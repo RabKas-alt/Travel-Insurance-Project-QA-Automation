@@ -97,8 +97,6 @@ Feature : Registration
     When  User clicks the "Next" button
     Then  User proceeds to the "Pan Type Step 3" section
 
-#Check down below :
-
   Scenario Outline: User can change the selected plan under the "Plan Type Step 3" section
     And  User is on the "<Section>" Section
     When User chooses <Plan>
@@ -117,7 +115,7 @@ Feature : Registration
 
 
   Scenario Outline: Invalid input leads to error message and user can't proceed to the "Payment Info Step 4" Section
-# ADd plan in one scenario - duplicates
+
     And   User is under the "Plan Type Step 3" section
     And   User selects the <Plan> Plan
     And   User enters "<InvalidInput>" in "<Field>"
@@ -145,7 +143,7 @@ Feature : Registration
       | Family Coverage |              | Any Child Birth Date field  | Child Birth date is required                              |
       | X Pet           |              | Any Pet Type field          | Pet Type is required                                      |
 
-  Scenario : If the input entered in the field is valid then user can proceed to the "Pan Type Step 4" Section
+  Scenario : If the input entered in the field is valid then user can proceed to the "Plan Type Step 4" Section
 
     And   User is under the "Pan Type Step 3" section
     And   User fills all mandatory fields with valid data
