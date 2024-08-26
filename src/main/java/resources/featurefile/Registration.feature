@@ -97,33 +97,53 @@ Feature : Registration
     When  User clicks the "Next" button
     Then  User proceeds to the "Pan Type Step 3" section
 
+#Check down below :
 
-  Scenario Outline: User can change the selected plan "Plan Type Step 3"
-    And  User is on the section
-    When User chooses <Plan> Plan
+  Scenario Outline: User can change the selected plan under the "Plan Type Step 3" section
+    And  User is on the "<Section>" Section
+    When User chooses <Plan>
     Then <Options> should display
 
     Examples:
+      | Section                  | Plan            | Options                       |
+      | Plan Type                | Single Coverage | Nothing                       |
+      | Plan Type                | Dual Coverage   | Second Participant Option     |
+      | Plan Type                | Family Coverage | Spouse  Section               |
+      | Plan Type                | Family Coverage | Child X Section               |
+      | Expatriate Services Plan | None            | Nothing                       |
+      | Expatriate Services Plan | Family Coverage | the ravel information Section |
+      | Pet Services Plan        | None            | Nothing                       |
+      | Pet Services Plan        | X pets          | X Pets Sections               |
+
 
   Scenario Outline: Invalid input leads to error message and user can't proceed to the "Payment Info Step 4" Section
 # ADd plan in one scenario - duplicates
     And   User is under the "Plan Type Step 3" section
-    When  User enters "<InvalidInput>" in "<Field>"
+    And   User selects the <Plan> Plan
+    And   User enters "<InvalidInput>" in "<Field>"
+    When  User clicks the "Next" Button
     Then  User gets the error message "<ErrorMessage>"
 
     Examples:
-      | InvalidInput | Field                | ErrorMessage                                              |
-      |              | all the mandatory    | Please ensure all fields are filled in before proceeding. |
-      |              | any First Name       | First Name is required                                    |
-      | a            | any First Name       | Last Name must be minimum 2                               |
-      |              | any Last Name        | Last Name is required                                     |
-      | a            | any Last Name        | Last Name must be minimum 2                               |
-      |              | any Birth Date       | Birth Date is required                                    |
-      |              | any Child Birth Date | Child Birth Date is required                              |
-      |              | any MI (Optional)    | Child Birth Date is required                              |
-      | a            | any MI (Optional)    | Child Birth Date must be minimum 2                        |
-      |              | Pet Type             | Pet Type is required                                      |
-
+      | Plan            | InvalidInput | Field                       | ErrorMessage                                              |
+      | Dual Coverage   |              | all the mandatory fields    | Please ensure all fields are filled in before proceeding. |
+      | Dual Coverage   |              | the First Name field        | First Name is required                                    |
+      | Dual Coverage   | a            | the First Name field        | First Name must be minimum 2                              |
+      | Dual Coverage   | a            | the Last Name field         | Last Name must be minimum 2                               |
+      | Dual Coverage   | a            | the Last Name field         | Last Name must be minimum 2                               |
+      | Dual Coverage   |              | the Birth Date field        | Birth date is required                                    |
+      | Family Coverage |              | all the mandatory fields    | Please ensure all fields are filled in before proceeding. |
+      | Family Coverage |              | the Spouse First Name field | First Name is required                                    |
+      | Family Coverage | a            | the Spouse First Name field | First Name must be minimum 2                              |
+      | Family Coverage |              | the Spouse Last Name field  | Last Name is required                                     |
+      | Family Coverage | a            | the Spouse Last Name field  | Last Name must be minimum 2                               |
+      | Family Coverage |              | the Spouse Birth Date field | Birth date is required                                    |
+      | Family Coverage |              | Any Child First Name field  | First Name is required                                    |
+      | Family Coverage | a            | Any Child First Name field  | First Name must be minimum 2                              |
+      | Family Coverage |              | Any Child Last Name field   | Last Name is required                                     |
+      | Family Coverage | a            | Any Child Last Name field   | Last Name must be minimum 2                               |
+      | Family Coverage |              | Any Child Birth Date field  | Child Birth date is required                              |
+      | X Pet           |              | Any Pet Type field          | Pet Type is required                                      |
 
   Scenario : If the input entered in the field is valid then user can proceed to the "Pan Type Step 4" Section
 
@@ -143,13 +163,11 @@ Feature : Registration
       | InvalidInput | Field                    | ErrorMessage                                              |
       |              | all the mandatory Fields | Please ensure all fields are filled in before proceeding. |
       | a            | the Address Field        | Address must be minimum 2                                 |
-      |              | the City                 | Card Number is required                                   |
-      |              | any First Name           | Security Code is required                                 |
-      |              | any First Name           | Name on Car is required                                   |
-      |              | any Last Name            | Expiration Date is required                               |
-      |              | any Last Name            | Invalid Coupon Code                                       |
-
-        # fix the fields
+      |              | the Car Number Field     | Card Number is required                                   |
+      |              | the Security Code        | Security Code is required                                 |
+      |              | the Name on Card         | Name on Card is required                                  |
+      |              | the Expiration Date      | Expiration Date is required                               |
+      |              | the Coupon Code          | Invalid Coupon Code                                       |
 
   Scenario : If the input entered in the field is valid, user can Enroll
 
