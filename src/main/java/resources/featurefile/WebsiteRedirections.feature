@@ -82,7 +82,7 @@ Feature : WebsiteRedirections Feature
       | Hello     | Comment/Question field | Message is too short      |
       |           | Comment/Question field | Message is required       |
 
-    #the minimum for the Comment/Question is 2 words
+
 
   Scenario Outline: If the input entered is valid under the contact us page,user can send the message
     Given User is on the Contact Us page
@@ -109,9 +109,8 @@ Feature : WebsiteRedirections Feature
       | Hello team                                                          | Comment/Question field |
       | Hello team  @#4 ASE!@DASDPCMIWE<PQWDASDIIQWEL>DAWEooQWEDQWEIIDMQDDE | Comment/Question field |
 
-
     # The minimum for the Comment/Question is 2 words
     # The maximum characters for the name is 60
-    # Don't forget the letter with accents example: blé
+    # Don't forget to test words with letters containing accents: àáâäǎæãåāaèéêëěẽēėęeùúûüǔũūűůuìíîïǐĩīıįiòóôöǒœøõōŵřțťþýŷÿłļľķħğġďðßşșśšźžżçćčċñńņň
     # Bug: When you click on "Space" or "Enter" many times in the Comment/Question Section it takes it, is this normal?
 

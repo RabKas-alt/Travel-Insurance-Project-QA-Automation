@@ -34,7 +34,7 @@ Feature : Welcome Page Feature
 
   Scenario Outline: Confirm or cancel the log out action
     And   User is at the welcome page
-    And   User clicked the "Log Out" button
+    And   User clicks the "Log Out" button
     When  User clicks on the <Button> button
     Then  User <Outcome>
 
@@ -44,5 +44,3 @@ Feature : Welcome Page Feature
       | Cancel  | stays at the welcome page  |
       | x       | closes the log out window  |
 
-
-    # don't forget to add a scenario related to the plans section disappearing after you log in
